@@ -1,3 +1,33 @@
+# s3-json-api
+
+## TEST IT OUT LIVE
+
+hit https://qx8ma77yhd.execute-api.us-east-1.amazonaws.com/prod/s3-buckets/
+
+## DEPLOY IT YOURSELF
+
+```sh
+cd s3-json-api
+pipenv install
+# pipenv shell
+
+cd iac
+
+# display the CloudFormation template that is generated
+aws okta exec {role} -- cdk synth s3-json-api
+
+# the bootstrap command only creates an S3 bucket to store our CloudFormation
+# we only need to run this command once (on our first go)
+aws-okta exec {role} -- cdk bootstrap
+
+aws-okta exec {role} -- cdk deploy s3-json-api
+
+# * make some changes locally *
+
+aws-okta exec {role} -- cdk deploy s3-json-api
+```
+
+## DESIGN
 
 Each "Part" will be in a separate branch
 

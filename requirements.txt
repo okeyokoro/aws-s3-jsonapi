@@ -1,2 +1,15 @@
+# iac
+aws-cdk.core
+aws-cdk.aws-s3
+aws-cdk.aws-lambda
+aws-cdk.aws-apigateway
+
+# lambda
+boto
 marshmallow-jsonapi
 flask-smorest
+
+# testing
+pytest
+flake8
+black

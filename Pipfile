@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+black = "*"
+
+[packages]
+boto = "*"
+marshmallow-jsonapi = "*"
+flask-smorest = "*"
+"aws-cdk.core" = "*"
+"aws-cdk.aws-s3" = "*"
+"aws-cdk.aws-lambda" = "*"
+"aws-cdk.aws-apigateway" = "*"
+pytest = "*"
+
+[requires]
+python_version = "3.7"

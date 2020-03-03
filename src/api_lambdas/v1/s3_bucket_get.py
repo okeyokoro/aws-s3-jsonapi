@@ -1,5 +1,8 @@
 
-
 def main(event, context):
-    pass
+    # TODO
+    return {
+        "statusCode": 200,
+        "body": "wuzz pohhpin'!"
+    }
 
