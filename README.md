@@ -2,7 +2,7 @@
 
 ## TEST IT OUT LIVE
 
-hit https://qx8ma77yhd.execute-api.us-east-1.amazonaws.com/prod/s3-buckets/
+hit https://s9sq2e18mf.execute-api.us-east-1.amazonaws.com/v1/s3-buckets/default
 
 ## DEPLOY IT YOURSELF
 
@@ -14,17 +14,17 @@ pipenv install
 cd iac
 
 # display the CloudFormation template that is generated
-aws okta exec {role} -- cdk synth s3-json-api
+aws okta exec {role} -- cdk synth
 
 # the bootstrap command only creates an S3 bucket to store our CloudFormation
 # we only need to run this command once (on our first go)
 aws-okta exec {role} -- cdk bootstrap
 
-aws-okta exec {role} -- cdk deploy s3-json-api
+aws-okta exec {role} -- cdk deploy
 
 # * make some changes locally *
 
-aws-okta exec {role} -- cdk deploy s3-json-api
+aws-okta exec {role} -- cdk deploy
 ```
 
 ## DESIGN
@@ -85,7 +85,7 @@ AWS CDK for:
 The **RDS db** will need some design
 
 - let's just have a db table called `s3_buckets`
-   - it will sore the `name` of all the s3 buckets this api has tried to reach
+   - it will store the `name` of all the s3 buckets this api has tried to reach
    - a `default` column (for the default s3 bucket)
    - `last_api_call_status_code` column (whether we could reach it or not)
    - `last_updated` column

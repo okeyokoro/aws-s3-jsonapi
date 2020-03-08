@@ -5,6 +5,7 @@ from resources import (
     Lambda,
     ApiGatewayLambdaIntegration,
     ApiGateway,
+    ApiGatewayRequestParameterBuilder,
 )
 
 
@@ -18,15 +19,28 @@ class Stack(core.Stack):
 
         self.api_gateway = ApiGateway(self, id,)
 
-        endpoint = self.create_api_endpoint("s3-buckets",) # TODO: /v1/s3-buckets
+        buckets = self.create_api_endpoint("s3-buckets",)
+        # TODO:
+        # buckets.handle_verb("GET", lambda_that_looks_at_RDS)
+        bucket = buckets.extend_endpoint("{bucket_name}")
 
         # GET /s3-buckets/<name>/
         # -----------------------
-        lambda_fn = self.create_lambda("s3_bucket_get",)
-        endpoint.handle_verb("GET", lambda_fn)
+        request_params = (
+            ApiGatewayRequestParameterBuilder()
+            .add_path("bucket_name", is_required=True)
+        )
+        lambda_fn = self.create_lambda(
+            "s3_bucket_get",
+            request_params=request_params.dict_for_integration
+        )
+        bucket.handle_verb(
+            "GET", lambda_fn,
+            request_params.dict_for_handle_verb
+        )
 
 
-    def create_lambda(self, file_name, directory="../src",):
+    def create_lambda(self, file_name, directory="../src", request_params=None):
 
         lambda_fn = Lambda(self, id,
                            file_name=file_name,
@@ -35,7 +49,7 @@ class Stack(core.Stack):
 
         self.s3.cdk_resource.grant_read_write(lambda_fn)
 
-        lambda_fn = ApiGatewayLambdaIntegration(lambda_fn)
+        lambda_fn = ApiGatewayLambdaIntegration(lambda_fn, request_params)
         lambda_fn = lambda_fn.cdk_resource
         return lambda_fn
 
