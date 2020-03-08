@@ -26,11 +26,15 @@ class Stack(core.Stack):
         endpoint.handle_verb("GET", lambda_fn)
 
 
-    def create_lambda(self, file_name, directory="../src/api_lambdas/v1",):
+    def create_lambda(self, file_name, directory="../src",):
+
         lambda_fn = Lambda(self, id,
                            file_name=file_name,
                            directory=directory,)
         lambda_fn = lambda_fn.cdk_resource
+
+        self.s3.cdk_resource.grant_read_write(lambda_fn)
+
         lambda_fn = ApiGatewayLambdaIntegration(lambda_fn)
         lambda_fn = lambda_fn.cdk_resource
         return lambda_fn
@@ -40,8 +44,6 @@ class Stack(core.Stack):
         endpoint = (
             self.api_gateway.create_api_endpoint(
                 name,
-                cors=True
-            )
-        )
+                cors=True))
         return endpoint
 

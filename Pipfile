@@ -5,7 +5,6 @@ verify_ssl = true
 
 [dev-packages]
 flake8 = "*"
-black = "*"
 
 [packages]
 boto = "*"
@@ -16,6 +15,7 @@ flask-smorest = "*"
 "aws-cdk.aws-lambda" = "*"
 "aws-cdk.aws-apigateway" = "*"
 pytest = "*"
+aws-cdk-aws-iam = "*"
 
 [requires]
 python_version = "3.7"

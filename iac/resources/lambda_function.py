@@ -1,4 +1,4 @@
-from aws_cdk import aws_lambda
+from aws_cdk import aws_lambda, core
 
 from .abstract_resource import AbstractResource
 
@@ -17,9 +17,7 @@ class Lambda(AbstractResource):
 
         self.cdk_resource = cdk_resource(stack_obj,
                                          f"{stack_id}-{file_name}-lambda-function",
-                                         #
                                          code=aws_lambda.Code.asset(directory),
-                                         #
                                          handler=f"{file_name}.{function_name}",
-                                         #
-                                         runtime=runtime,)
+                                         runtime=runtime,
+                                         timeout=core.Duration.seconds(20))
