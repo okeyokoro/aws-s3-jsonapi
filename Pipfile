@@ -16,6 +16,10 @@ flask-smorest = "*"
 "aws-cdk.aws-apigateway" = "*"
 pytest = "*"
 aws-cdk-aws-iam = "*"
+aws-cdk-aws-ec2 = "*"
+aws-cdk-aws-rds = "*"
+aws-cdk-aws-elasticloadbalancingv2 = "*"
+aws-cdk-aws-autoscaling = "*"
 
 [requires]
 python_version = "3.7"

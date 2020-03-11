@@ -6,8 +6,8 @@ from .abstract_resource import AbstractResource
 
 class IAMRole(AbstractResource):
     def __init__(self, stack_obj, stack_id,
+                 name, resource_url,
                  cdk_resource=aws_iam.Role,
-                 name, resource_url
                 ):
         super().__init__(stack_obj, stack_id, cdk_resource)
         self.cdk_resource = (

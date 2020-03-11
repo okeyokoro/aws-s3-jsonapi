@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c9a18c8a63cefe7a1db590d5d46d1debfc909f8f2f1093da7c67f489d9c76673"
+            "sha256": "64519bb75348f6340a1b5b63cf28d96a5c5a6ef3b7bbb1e08bb953fdd25438d0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,9 +30,37 @@
             ],
             "version": "==19.3.0"
         },
+        "aws-cdk-aws-autoscaling": {
+            "hashes": [
+                "sha256:fbf119a85a407742a04ada01ebba37896a56379f3578f5eca5f7c5ccd064db46"
+            ],
+            "index": "pypi",
+            "version": "==1.27.0"
+        },
+        "aws-cdk-aws-ec2": {
+            "hashes": [
+                "sha256:f2201d379142b6d954c04329f2e6b87b916e0e43aea22b852285f1f202eeb6bb"
+            ],
+            "index": "pypi",
+            "version": "==1.27.0"
+        },
+        "aws-cdk-aws-elasticloadbalancingv2": {
+            "hashes": [
+                "sha256:2b1483ca39bcb2c6c6cc2068bb44a51b7c6bcca24e4adc141480bca33fab4621"
+            ],
+            "index": "pypi",
+            "version": "==1.27.0"
+        },
         "aws-cdk-aws-iam": {
             "hashes": [
                 "sha256:1b4f5b29a1c5f443bc419918839a3f42bd708ee9b442c8099d63caf6bbc0ee28"
+            ],
+            "index": "pypi",
+            "version": "==1.27.0"
+        },
+        "aws-cdk-aws-rds": {
+            "hashes": [
+                "sha256:48fa0f39679667fc35e1bcea5e7f19db7a0f410a333e98e5c0a58f6f257f1b72"
             ],
             "index": "pypi",
             "version": "==1.27.0"
@@ -50,6 +78,13 @@
                 "sha256:7d149a13c0999344d9d8fd20d39851e2422e22ce8872e141febf43e99434edda"
             ],
             "index": "pypi",
+            "version": "==1.27.0"
+        },
+        "aws-cdk.aws-autoscaling-common": {
+            "hashes": [
+                "sha256:01e402bd64e2f09fc644672d960e0455106f8ef3d2fb81d0be89223641a47088",
+                "sha256:69fe7dd0ef7e69254c79b03c2c94e99c1098abe31c41a0da2d2d17feb4f7711c"
+            ],
             "version": "==1.27.0"
         },
         "aws-cdk.aws-certificatemanager": {
@@ -77,6 +112,13 @@
             "hashes": [
                 "sha256:b2ea050123cf5479fdf58e8d57eb76845d4537c783f6fc3f8b91a20887557ade",
                 "sha256:f2201d379142b6d954c04329f2e6b87b916e0e43aea22b852285f1f202eeb6bb"
+            ],
+            "version": "==1.27.0"
+        },
+        "aws-cdk.aws-elasticloadbalancing": {
+            "hashes": [
+                "sha256:7e394094694e4f670a390fadfcbfd4de16766ff447a6ec4028a15aec79977989",
+                "sha256:c0d5686fe97e84d19b261716f9f483df2cec4e21fc96330287d871e0d2089095"
             ],
             "version": "==1.27.0"
         },
@@ -145,6 +187,20 @@
             ],
             "version": "==1.27.0"
         },
+        "aws-cdk.aws-sam": {
+            "hashes": [
+                "sha256:f23c0f0420de8998f54dc74a1222d0229093da985863bf7c12ca5f508ceb5450",
+                "sha256:f43728996e081aef662a027a2c66813a45cc3bf897d2fea111fd8ae10bc939ba"
+            ],
+            "version": "==1.27.0"
+        },
+        "aws-cdk.aws-secretsmanager": {
+            "hashes": [
+                "sha256:bb313155ed5f22bfb9a784e3b50e26b19e41db962177bd867b431f8d3a6ef051",
+                "sha256:c5f10d11ff10d2be2c6f134ad3302ae11c7eba8eabb3d37c5044aa96fd6b977d"
+            ],
+            "version": "==1.27.0"
+        },
         "aws-cdk.aws-sns": {
             "hashes": [
                 "sha256:696260c9965b37e3de0ff313a60044db9b15033018c165c2ba23972578ae7c89",
@@ -205,10 +261,10 @@
         },
         "click": {
             "hashes": [
-                "sha256:2335065e6395b9e67ca716de5f7526736bfa6ceead690adf616d925bdc622b13",
-                "sha256:5b94b49521f6456670fdb30cd82a4eca9412788a93fa6dd6df72c94d5a8ff2d7"
+                "sha256:8a18b4ea89d8820c5d0c7da8a64b2c324b4dabb695804dbfea19b9be9d88c0cc",
+                "sha256:e345d143d80bf5ee7534056164e5e112ea5e22716bbb1ce727941f4c8b471b9a"
             ],
-            "version": "==7.0"
+            "version": "==7.1.1"
         },
         "flask": {
             "hashes": [
