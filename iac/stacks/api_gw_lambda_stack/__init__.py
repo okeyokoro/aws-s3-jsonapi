@@ -36,7 +36,12 @@ class ApiGwLambdaStack(Stack):
 
         self.api_gateway = ApiGateway(self, id, lambda_fn)
 
-        self.vpc_link = VpcLink(self, f"{id}--vpc-link", targets=[vpc_stack.alb])
+        self.vpc_link = VpcLink(
+            self,
+            f"{id}--vpc-link",
+            vpc_link_name=f"{id}-vpc-link'",
+            targets=[vpc_stack.alb],
+        )
 
         buckets = self.create_api_endpoint("s3-buckets",)
         # TODO:

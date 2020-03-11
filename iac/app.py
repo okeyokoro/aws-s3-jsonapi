@@ -24,7 +24,7 @@ from stacks import (
 if __name__ == "__main__":
 
     app = core.App()
-    id = "s3-json-api"
+    id = "s3-json-api-pt-2"
 
     vpc_stack = TwoTierVPCStack(app, id)
     db_stack = RdsServerlessStack(app, id, vpc_stack.vpc.cdk_resource)

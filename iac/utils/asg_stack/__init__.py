@@ -4,14 +4,13 @@ import aws_cdk.aws_elasticloadbalancingv2 as elb
 import aws_cdk.aws_autoscaling as autoscaling
 
 ec2_type = "t2.micro"
-key_name = "id_rsa"  # Setup key_name for EC2 instance login
+
 linux_ami = ec2.AmazonLinuxImage(generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX,
                                  edition=ec2.AmazonLinuxEdition.STANDARD,
                                  virtualization=ec2.AmazonLinuxVirt.HVM,
                                  storage=ec2.AmazonLinuxStorage.GENERAL_PURPOSE
-                                 )  # Indicate your AMI, no need a specific id in the region
-with open("./user_data/user_data.sh") as f:
-    user_data = f.read()
+                                 )
+)
 
 
 class CdkEc2Stack(core.Stack):
@@ -54,8 +53,6 @@ class CdkEc2Stack(core.Stack):
                                                 vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE),
                                                 instance_type=ec2.InstanceType(instance_type_identifier=ec2_type),
                                                 machine_image=linux_ami,
-                                                key_name=key_name,
-                                                user_data=ec2.UserData.custom(user_data),
                                                 desired_capacity=2,
                                                 min_capacity=2,
                                                 max_capacity=2,
