@@ -1,4 +1,4 @@
-import datetime
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
@@ -12,7 +12,7 @@ def db_init():
         os.getenv("DB_URL")
     )
 
-    from models import *
+    from .models import S3Buckets
 
     Base.metadata.create_all(engine)
 

@@ -56,7 +56,7 @@ class S3JsonAPIStack(Stack):
                         f"@"
                         f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.hostname}"  # hostname
                         f":"
-                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.port}"      # port
+                        f"5432"      # port
                         f"/"
                         f"s3jsonapi" # db
                         ),
