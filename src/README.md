@@ -1,3 +1,11 @@
+
+```sh
+adapters  schemas  usecases
+ __init__.py   rds_db_get.py  s3_bucket_get.py
+README.md
+requirements.txt
+```
+
 ## LAMBDA GOTCHAS
 
 1. You need to have all lambdas at the root of the directory.

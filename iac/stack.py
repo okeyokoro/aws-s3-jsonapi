@@ -17,7 +17,7 @@ from aggregates import (
 # lambda stack ✔️
 # rds aurora stack ✔️
 #
-# security group to keep them together
+# ^ security group to keep them together
 
 # adapters
 # --------

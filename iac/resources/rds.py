@@ -124,27 +124,3 @@ class RDS(AbstractResource):
                 aws_ec2.InstanceSize.LARGE
             ),
         )
-
-"""
-class DatabaseCluster(
-    scope: aws_cdk.core.Construct,
-    id: str,
-    engine: "DatabaseClusterEngine",
-    instance_props: "InstanceProps",
-    master_user: "Login",
-    backup: typing.Optional["BackupProps"]=None,
-    cluster_identifier: typing.Optional[str]=None,
-    default_database_name: typing.Optional[str]=None,
-    engine_version: typing.Optional[str]=None, 
-    instance_identifier_base: typing.Optional[str]=None, 
-    instances: typing.Optional[jsii.Number]=None, 
-    kms_key: typing.Optional[aws_cdk.aws_kms.IKey]=None, 
-    monitoring_interval: typing.Optional[aws_cdk.core.Duration]=None, 
-    monitoring_role: typing.Optional[aws_cdk.aws_iam.IRole]=None, 
-    parameter_group: typing.Optional["IParameterGroup"]=None, 
-    port: typing.Optional[jsii.Number]=None, 
-    preferred_maintenance_window: typing.Optional[str]=None, 
-    removal_policy: typing.Optional[aws_cdk.core.RemovalPolicy]=None, 
-    storage_encrypted: typing.Optional[bool]=None
-)
-"""

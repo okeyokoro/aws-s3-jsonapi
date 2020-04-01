@@ -21,9 +21,6 @@ class LambdaCreationMixin:
 
         self.s3.s3.cdk_resource.grant_read_write(lambda_fn)
 
-        # TODO: grant the lambda perms to the rds db
-        # self.db.aurora.cdk_resource
-
         lambda_fn = ApiGatewayLambdaIntegration(lambda_fn, request_params)
         lambda_fn = lambda_fn.cdk_resource
         return lambda_fn
