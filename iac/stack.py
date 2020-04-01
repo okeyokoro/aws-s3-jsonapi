@@ -14,17 +14,15 @@ from aggregates import (
 
 # private subnet
 # --------------
-# rds aurora stack ✔️
 # lambda stack ✔️
+# rds aurora stack ✔️
 #
 # security group to keep them together
 
 # adapters
 # --------
-# api gateway aggregate  ->  connects to public subnet (where the lambda is)
+# api gateway aggregate  ->  connects to the private subnet (where the lambda is)
 # s3 aggregate           ->  connects to (public-subnet? vpc-endpoint?) (where the lambda is)
-
-
 
 
 class S3JsonAPIStack(Stack):
@@ -50,15 +48,22 @@ class S3JsonAPIStack(Stack):
             vpc_aggregate.vpc.cdk_resource
         )
 
-        # postgres db url
-        # DB_URL = (f"mongodb://"
-        #           f"{db_aggregate.aurora.cdk_resource.master_user}:"
-        #           f"{db_aggregate.aurora.cdk_resource.master_user_password}@"
-        #           f"{db_aggregate.aurora.cdk_resource.attr_endpoint}:"
-        #           f"{db_aggregate.aurora.cdk_resource.attr_port}")
-        # S3_URL = ""
-        # API_URL = ""
-        # ^ pass these to the lambda through env variables
+        env_dict = {
+            "DB_URL" : (f"postgresql://"
+                        f"s3jsonapi" # user
+                        f":"
+                        f"{db_aggregate.aurora.cdk_resource.secret.secret_value.to_string()}" # password
+                        f"@"
+                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.hostname}"       # hostname
+                        f":"
+                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.port}"           # port
+                        f"/"
+                        f"s3jsonapi" # db
+                        ),
+
+            "S3_BUCKET_URL" : s3_aggregate.s3.cdk_resource.bucket_website_url,
+            "S3_BUCKET_NAME" : s3_aggregate.s3.cdk_resource.bucket_name,
+        }
 
         api_gw_lambda_aggregate = ApiGwLambdaAggregate(
             self, id,
@@ -66,10 +71,13 @@ class S3JsonAPIStack(Stack):
             vpc_aggregate,
             db_aggregate,
             security_group,
+            env_dict=env_dict,
         )
 
-        # core.CfnOutput(
-        #     self, "DatabaseOut",
-        #     description="Database URL",
-        #     value=DB_URL
-        # )
+        for key,value in env_dict.items():
+            CfnOutput(
+                self,
+                key,
+                value=value,
+            )
+

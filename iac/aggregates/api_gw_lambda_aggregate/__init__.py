@@ -14,7 +14,8 @@ class LambdaCreationMixin:
                            file_name=file_name,
                            directory=directory,
                            vpc=self.vpc,
-                           security_group=self.security_group,)
+                           security_group=self.security_group,
+                           env_dict=self.env_dict)
 
         lambda_fn = lambda_fn.cdk_resource
 
@@ -38,7 +39,18 @@ class LambdaCreationMixin:
 
 class ApiGwLambdaAggregate(LambdaCreationMixin):
 
-    def __init__(self, stack, id, s3, vpc_aggregate, db, security_group):
+    def __init__(self, stack, id,
+        s3,
+        vpc_aggregate,
+        db,
+        security_group,
+        env_dict=None,
+    ):
+        if not env_dict:
+            env_dict = {}
+
+        self.env_dict = env_dict
+
         self.stack = stack
         self.vpc = vpc_aggregate.vpc.cdk_resource
         self.security_group = security_group

@@ -2,7 +2,7 @@
 
 ## TEST IT OUT LIVE
 
-hit https://s9sq2e18mf.execute-api.us-east-1.amazonaws.com/v1/s3-buckets/default
+hit https://aw9z3rf567.execute-api.us-east-1.amazonaws.com/v1/s3-buckets/default
 
 ## DEPLOY IT YOURSELF
 
