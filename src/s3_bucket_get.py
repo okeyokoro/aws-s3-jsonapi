@@ -1,4 +1,3 @@
-import json
 from usecases import get_files_and_directories_in_s3_bucket
 from schemas.s3_bucket import s3_contents_schema
 
@@ -6,4 +5,4 @@ from schemas.s3_bucket import s3_contents_schema
 def main(event, context):
     bucket_name = event["params"]["bucket_name"]
     contents_of_bucket = get_files_and_directories_in_s3_bucket(bucket_name)
-    return [ s3_contents_schema.dump(contents_of_bucket) ]
+    return s3_contents_schema.dump(contents_of_bucket)

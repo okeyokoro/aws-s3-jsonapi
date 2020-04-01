@@ -31,3 +31,5 @@
      Parameters section of the Method Request page.
    ```
 
+4. You have to do voodoo magic in order to get `psycopg2` deployed with the lambda
+   Thankfully, someone solved the problem for us: https://github.com/jkehler/awslambda-psycopg2
