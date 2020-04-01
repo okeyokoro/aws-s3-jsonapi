@@ -21,8 +21,8 @@ from aggregates import (
 
 # adapters
 # --------
-# api gateway aggregate  ->  connects to the private subnet (where the lambda is)
-# s3 aggregate           ->  connects to (public-subnet? vpc-endpoint?) (where the lambda is)
+# api gateway aggregate ✔️  ->  connects to the private subnet (where the lambda is)
+# s3 aggregate ✔️           ->  connects through VPCEndpoint
 
 
 class S3JsonAPIStack(Stack):

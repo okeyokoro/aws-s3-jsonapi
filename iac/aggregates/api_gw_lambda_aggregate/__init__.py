@@ -58,6 +58,11 @@ class ApiGwLambdaAggregate(LambdaCreationMixin):
         self.s3 = s3
         self.db = db
 
+        self.api_gateway = ApiGateway(stack, id,)
+
+        buckets = self.create_api_endpoint("s3-buckets",)
+        bucket = buckets.extend_endpoint("{bucket_name}")
+
         # -----------------------
         # GET /s3-buckets/<name>/
         # -----------------------
@@ -70,18 +75,14 @@ class ApiGwLambdaAggregate(LambdaCreationMixin):
             "s3_bucket_get",
             request_params=request_params.dict_for_integration
         )
-
-        self.api_gateway = ApiGateway(stack, id, lambda_fn)
-
-        buckets = self.create_api_endpoint("s3-buckets",)
-
-        bucket = buckets.extend_endpoint("{bucket_name}")
-
         bucket.handle_verb(
             "GET", lambda_fn,
             request_params.dict_for_handle_verb
         )
 
-        # TODO: buckets.handle_verb("GET", lambda_that_looks_at_RDS)
-
+        # -----------------------
+        # GET /s3-buckets/
+        # -----------------------
+        rds_get_lambda_fn = self.create_lambda("rds_db_get",)
+        buckets.handle_verb("GET", rds_get_lambda_fn)
 

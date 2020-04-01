@@ -13,7 +13,6 @@ class ApiGateway(AbstractResource):
     cdk_construct = aws_apigateway.RestApi
 
     def __init__(self, stack_obj, stack_id,
-                 lambda_fn,
                  version="v1",
                 ):
         super().__init__(stack_obj, stack_id)
