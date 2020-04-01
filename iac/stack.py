@@ -52,11 +52,11 @@ class S3JsonAPIStack(Stack):
             "DB_URL" : (f"postgresql://"
                         f"s3jsonapi" # user
                         f":"
-                        f"{db_aggregate.aurora.cdk_resource.secret.secret_value.to_string()}" # password
+                        f"s3jsonapi" # password
                         f"@"
-                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.hostname}"       # hostname
+                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.hostname}"  # hostname
                         f":"
-                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.port}"           # port
+                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.port}"      # port
                         f"/"
                         f"s3jsonapi" # db
                         ),
