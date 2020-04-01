@@ -4,6 +4,12 @@
 
 hit https://aw9z3rf567.execute-api.us-east-1.amazonaws.com/v1/s3-buckets/default
 
+^ replace `default` with the **name** any public s3 bucket to see its contents in JSON:API format
+
+hit https://aw9z3rf567.execute-api.us-east-1.amazonaws.com/v1/s3-buckets
+
+^ that shows you the contents of an RDS AURORA database (which is just a record of all s3 buckets visited by this API)
+
 ## DEPLOY IT YOURSELF
 
 ```sh
