@@ -12,6 +12,8 @@ AWS CDK infrastructure as code
 
 - https://github.com/aws-samples/aws-cdk-examples
 
+---
+
 - https://cdkworkshop.com/30-python.html
 
 - https://docs.aws.amazon.com/cdk/api/latest/python/index.html

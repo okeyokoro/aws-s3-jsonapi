@@ -25,6 +25,10 @@ aws-okta exec {role} -- cdk deploy
 # * make some changes locally *
 
 aws-okta exec {role} -- cdk deploy
+
+# see the stack in the aws console
+
+aws-okta login {role}
 ```
 
 ## DESIGN

@@ -15,10 +15,9 @@ from aggregates import (
 # private subnet
 # --------------
 # rds aurora stack ✔️
-
-# public subnet
-# -------------
 # lambda stack ✔️
+#
+# security group to keep them together
 
 # adapters
 # --------
