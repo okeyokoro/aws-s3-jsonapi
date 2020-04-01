@@ -7,7 +7,7 @@ class S3BucketsSchema(CCS):
     class Meta:
         type_ = "s3-bucket"
 
-    id = fields.Str(attribute="key")
+    id = fields.Str()
     name = fields.Str()
     was_default = fields.Boolean()
     last_updated = fields.DateTime()
