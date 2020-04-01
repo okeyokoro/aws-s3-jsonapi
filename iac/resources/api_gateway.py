@@ -23,10 +23,6 @@ class ApiGateway(AbstractResource):
             f"{stack_id}-api-gateway",
             rest_api_name=f"{stack_id}-api-gateway",
             deploy_options=aws_apigateway.StageOptions(stage_name=version),
-            endpoint_configuration={
-                "types": [aws_apigateway.EndpointType.PRIVATE],
-                "vpc_endpoints": [lambda_fn]
-            }
         )
 
     def create_api_endpoint(self, name:str, cors=True):

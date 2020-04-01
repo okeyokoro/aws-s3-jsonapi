@@ -4,11 +4,19 @@ AWS CDK infrastructure as code
 
 ## LEARNING RESOURCES
 
+- the best: https://medium.com/tysonworks/create-and-deploy-simple-url-shortener-with-aws-cdk-and-documentdb-875ab99d51f5
+
 - https://github.com/aws-samples/aws-modern-application-workshop/tree/python-cdk/module-2
+
+- https://github.com/TysonWorks/cdk-examples
 
 - https://github.com/aws-samples/aws-cdk-examples
 
+- https://cdkworkshop.com/30-python.html
+
 - https://docs.aws.amazon.com/cdk/api/latest/python/index.html
+
+- https://github.com/cloudtools/troposphere
 
 - https://github.com/aws-samples/aws-cdk-examples/blob/master/python/docker-app-with-asg-alb/
 
@@ -29,7 +37,6 @@ AWS CDK infrastructure as code
 - https://www.youtube.com/watch?v=Lnv9QCRGiMs&list=PLGyRwGktEFqcU7hnjdB08zpBasQcBcz82
 
 - https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_rds.README.html
-
 
 ## Stacks as Bounded Contexts (DDD)
 

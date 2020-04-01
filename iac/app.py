@@ -1,38 +1,10 @@
-from aws_cdk import core
+from aws_cdk.core import App
 
-from stacks import (
-    TwoTierVPCStack,
-    ApiGwLambdaStack,
-    RdsServerlessStack,
-    S3Stack,
-)
-
-
-# vpc stack ✔️
-
-# private subnet
-# --------------
-# s3 stack ✔️
-# rds aurora stack ✔️
-
-# public subnet
-# -------------
-# api gateway lambda stack ✔️
-
+from stack import S3JsonAPIStack
 
 
 if __name__ == "__main__":
 
-    app = core.App()
-    id = "s3-json-api-pt-2"
-
-    vpc_stack = TwoTierVPCStack(app, id)
-    db_stack = RdsServerlessStack(app, id, vpc_stack.vpc.cdk_resource)
-
-    s3_stack = S3Stack(app, id, vpc_stack.vpc.cdk_resource)
-
-    api_gw_lambda_stack = ApiGwLambdaStack(
-        app, id, s3_stack, vpc_stack, db_stack
-    )
-
+    app, id = App(), "s3-json-api-ii"
+    S3JsonAPIStack(app, id)
     app.synth()

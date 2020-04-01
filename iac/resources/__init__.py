@@ -4,3 +4,6 @@ from .api_gateway import (
     ApiGatewayLambdaIntegration,
     ApiGatewayRequestParameterBuilder
 )
+from .rds import AuroraServerless
+from .s3 import S3
+from .vpc import VPC, SubnetConfigBuilder

@@ -2,7 +2,14 @@
 ### USEFUL LINKS
 
 Quick Start
+https://aws.amazon.com/blogs/developer/working-with-the-aws-cloud-development-kit-and-aws-construct-library/
 https://github.com/aws-samples/aws-modern-application-workshop/tree/python-cdk/module-2#creating-the-core-infrastructure-using-the-aws-cdk
+https://cloudonaut.io/advanved-aws-networking-pitfalls-that-you-should-avoid/
+https://cloudonaut.io/beyond-the-default-a-multi-vpc-architecture/
+https://cloudonaut.io/fargate-networking-101/
+
+Gotchas
+https://spin.atomicobject.com/2020/03/09/aws-vpc-best-practices/
 
 Clear
 https://www.youtube.com/watch?v=bGDMeD6kOz0
@@ -12,6 +19,10 @@ https://www.youtube.com/watch?v=hiKPPy584Mg
 
 Clearest
 https://www.youtube.com/watch?v=LX5lHYGFcnA
+
+Books
+Sybex - AWS Certified Developer
+Sybex - AWS Certified Cloud Practitioner
 
 ### NOTES
 
@@ -98,8 +109,6 @@ There are two ways to connect VPCs:
 
 - Transit Gateway; all VPCs communicate through a centralized service (NOTE: VPCs must be in the same region (for now) )
 
-
-
 https://www.youtube.com/watch?v=8K7GZFff_V0
 
 https://www.youtube.com/watch?v=rQvl-V3tLiQ
@@ -123,4 +132,3 @@ https://www.youtube.com/watch?v=vbyjpMeYitA
 https://www.youtube.com/watch?v=RY9ERVyNsyI
 
 https://www.youtube.com/watch?v=dv7fpOIkiRU
-
