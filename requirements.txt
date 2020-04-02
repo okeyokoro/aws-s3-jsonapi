@@ -4,6 +4,10 @@ aws-cdk.aws-iam
 aws-cdk.aws-s3
 aws-cdk.aws-lambda
 aws-cdk.aws-apigateway
+aws-cdk.aws-ec2
+aws-cdk.aws-rds
+aws_cdk.aws_elasticloadbalancingv2
+aws_cdk.aws_autoscaling
 
 # lambda
 boto3

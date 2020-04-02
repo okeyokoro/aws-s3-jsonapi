@@ -2,7 +2,7 @@ from collections import namedtuple
 
 from aws_cdk import aws_apigateway
 
-from .abstract_resource import AbstractResource
+from abcs import AbstractResource
 
 
 
@@ -10,16 +10,19 @@ class ApiGateway(AbstractResource):
     """ - https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_apigateway.README.html
         - https://docs.aws.amazon.com/cdk/api/latest/python/aws_cdk.aws_apigateway.html
     """
+    cdk_construct = aws_apigateway.RestApi
+
     def __init__(self, stack_obj, stack_id,
-                 cdk_resource=aws_apigateway.RestApi,
                  version="v1",
                 ):
-        super().__init__(stack_obj, stack_id, cdk_resource)
+        super().__init__(stack_obj, stack_id)
 
-        self.cdk_resource = cdk_resource(stack_obj,
-                                         f"{stack_id}-api-gateway",
-                                         rest_api_name=f"{stack_id}-api-gateway",
-                                         deploy_options=aws_apigateway.StageOptions(stage_name=version))
+        self.cdk_resource = self.cdk_construct(
+            stack_obj,
+            f"{stack_id}-api-gateway",
+            rest_api_name=f"{stack_id}-api-gateway",
+            deploy_options=aws_apigateway.StageOptions(stage_name=version),
+        )
 
     def create_api_endpoint(self, name:str, cors=True):
         new_endpoint_cdk_resource = self.cdk_resource.root.add_resource(name)

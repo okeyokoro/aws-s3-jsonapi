@@ -1,9 +1,10 @@
-from aws_cdk import core
+from aws_cdk.core import App
 
-from stack import Stack
+from stack import S3JsonAPIStack
 
 
 if __name__ == "__main__":
-    app = core.App()
-    Stack(app, "s3-json-api")
+
+    app, id = App(), "s3-json-api-ii"
+    S3JsonAPIStack(app, id)
     app.synth()

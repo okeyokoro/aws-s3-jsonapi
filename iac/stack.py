@@ -1,63 +1,83 @@
-from aws_cdk import core
+from aws_cdk.core import Stack, CfnOutput
 
-from resources import (
-    S3,
-    Lambda,
-    ApiGatewayLambdaIntegration,
-    ApiGateway,
-    ApiGatewayRequestParameterBuilder,
+import aws_cdk.aws_ec2 as ec2
+
+from aggregates import (
+    S3Aggregate,
+    TwoTierVPCAggregate,
+    ApiGwLambdaAggregate,
+    RdsServerlessAggregate,
 )
 
 
-class Stack(core.Stack):
-    """ All the cloud resources are assembled/initialized in this 1 Stack """
+# VPC stack ✔️
 
+# private subnet
+# --------------
+# lambda stack ✔️
+# rds aurora stack ✔️
+#
+# ^ security group to keep them together
+
+# adapters
+# --------
+# api gateway aggregate ✔️  ->  connects to the private subnet (where the lambda is)
+# s3 aggregate ✔️           ->  connects through VPCEndpoint
+
+
+class S3JsonAPIStack(Stack):
     def __init__(self, app, id:str, **kwargs):
-        super().__init__(app, id, **kwargs)
+        super().__init__(app, f"{id}", **kwargs)
 
-        self.s3 = S3(self, id,)
+        vpc_aggregate = TwoTierVPCAggregate(self, id)
 
-        self.api_gateway = ApiGateway(self, id,)
-
-        buckets = self.create_api_endpoint("s3-buckets",)
-        # TODO:
-        # buckets.handle_verb("GET", lambda_that_looks_at_RDS)
-        bucket = buckets.extend_endpoint("{bucket_name}")
-
-        # GET /s3-buckets/<name>/
-        # -----------------------
-        request_params = (
-            ApiGatewayRequestParameterBuilder()
-            .add_path("bucket_name", is_required=True)
-        )
-        lambda_fn = self.create_lambda(
-            "s3_bucket_get",
-            request_params=request_params.dict_for_integration
-        )
-        bucket.handle_verb(
-            "GET", lambda_fn,
-            request_params.dict_for_handle_verb
+        security_group = ec2.SecurityGroup(
+            self, f"{id}-security-group",
+            vpc=vpc_aggregate.vpc.cdk_resource,
+            security_group_name=f"{id}-security-group",
         )
 
+        db_aggregate = RdsServerlessAggregate(
+            self, id,
+            vpc_aggregate.vpc.cdk_resource,
+            security_group,
+        )
 
-    def create_lambda(self, file_name, directory="../src", request_params=None):
+        s3_aggregate = S3Aggregate(
+            self, id,
+            vpc_aggregate.vpc.cdk_resource
+        )
 
-        lambda_fn = Lambda(self, id,
-                           file_name=file_name,
-                           directory=directory,)
-        lambda_fn = lambda_fn.cdk_resource
+        env_dict = {
+            "DB_URL" : (f"postgresql://"
+                        f"s3jsonapi" # user
+                        f":"
+                        f"s3jsonapi" # password
+                        f"@"
+                        f"{db_aggregate.aurora.cdk_resource.cluster_endpoint.hostname}"  # hostname
+                        f":"
+                        f"5432"      # port
+                        f"/"
+                        f"s3jsonapi" # db
+                        ),
 
-        self.s3.cdk_resource.grant_read_write(lambda_fn)
+            "S3_BUCKET_URL" : s3_aggregate.s3.cdk_resource.bucket_website_url,
+            "S3_BUCKET_NAME" : s3_aggregate.s3.cdk_resource.bucket_name,
+        }
 
-        lambda_fn = ApiGatewayLambdaIntegration(lambda_fn, request_params)
-        lambda_fn = lambda_fn.cdk_resource
-        return lambda_fn
+        api_gw_lambda_aggregate = ApiGwLambdaAggregate(
+            self, id,
+            s3_aggregate,
+            vpc_aggregate,
+            db_aggregate,
+            security_group,
+            env_dict=env_dict,
+        )
 
-
-    def create_api_endpoint(self, name):
-        endpoint = (
-            self.api_gateway.create_api_endpoint(
-                name,
-                cors=True))
-        return endpoint
+        for key,value in env_dict.items():
+            CfnOutput(
+                self,
+                key,
+                value=value,
+            )
 

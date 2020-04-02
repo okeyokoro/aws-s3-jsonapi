@@ -1,1 +1,7 @@
+# validation
 marshmallow-jsonapi
+
+# see: https://github.com/jkehler/awslambda-psycopg2
+
+# db
+sqlalchemy

@@ -1,3 +1,11 @@
+
+```sh
+adapters  schemas  usecases
+ __init__.py   rds_db_get.py  s3_bucket_get.py
+README.md
+requirements.txt
+```
+
 ## LAMBDA GOTCHAS
 
 1. You need to have all lambdas at the root of the directory.
@@ -31,3 +39,5 @@
      Parameters section of the Method Request page.
    ```
 
+4. You have to do voodoo magic in order to get `psycopg2` deployed with the lambda
+   Thankfully, someone solved the problem for us: https://github.com/jkehler/awslambda-psycopg2

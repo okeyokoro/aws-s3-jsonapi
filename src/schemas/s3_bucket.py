@@ -1,25 +1,9 @@
 from marshmallow_jsonapi import fields
 
-from . import CamelCaseSchema
+from . import CamelCaseSchema as CCS
 
 
-class S3ObjectSummarySchema(CamelCaseSchema):
-    """ - https://jsonapi.org/
-        - https://github.com/marshmallow-code/marshmallow-jsonapi
-        - https://marshmallow.readthedocs.io/en/latest/api_reference.html#module-marshmallow.fields
-    """
-    class Meta:
-        type_ = "s3-buckets"
-
-    id = fields.Str(attribute="key")
-    e_tag = fields.Str()
-    last_modified = fields.DateTime()
-    owner = fields.Dict(keys=fields.Str(), values=fields.Str())
-    size = fields.Int()
-    storage_class = fields.Str()
-
-
-class S3ObjectSchema(CamelCaseSchema):
+class S3ObjectSchema(CCS):
     class Meta:
         type_ = "file"
 
